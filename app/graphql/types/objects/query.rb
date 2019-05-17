@@ -11,6 +11,10 @@ module Types
         argument :username, String, required: true
       end
 
+      field :episode, Types::Objects::EpisodeType, null: true do
+        argument :annict_id, Integer, required: true
+      end
+
       field :search_works, Types::Objects::WorkType.connection_type, null: true do
         argument :annict_ids, [Integer], required: false
         argument :seasons, [String], required: false
@@ -42,6 +46,10 @@ module Types
 
       def user(username:)
         User.published.find_by(username: username)
+      end
+
+      def episode(annict_id:)
+        Episode.published.find_by(id: annict_id)
       end
 
       def search_works(annict_ids: nil, seasons: nil, titles: nil, order_by: nil)

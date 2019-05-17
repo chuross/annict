@@ -817,6 +817,8 @@ enum ProgramState {
 }
 
 type Query {
+  episode(annictId: Int!): Episode
+
   """
   Fetches an object given its ID.
   """
